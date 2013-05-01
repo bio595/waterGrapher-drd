@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends Activity {
@@ -13,8 +16,18 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		EditText usernameInput = (EditText) findViewById(R.id.username);
-		EditText passwordInput = (EditText) findViewById(R.id.password);
+		final EditText usernameInput = (EditText) findViewById(R.id.username);
+		final EditText passwordInput = (EditText) findViewById(R.id.password);
+		
+		Button loginButton = (Button) findViewById(R.id.loginButton);
+		loginButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View button) {
+				LoginTask loginTask =  new LoginTask();
+				loginTask.execute(new String[]{usernameInput.getText().toString(), passwordInput.getText().toString()});
+			}
+		});
 	}
 
 	@Override
@@ -35,7 +48,7 @@ public class LoginActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(Boolean result) {
-			
+			//Return the success of the login
 		}
 		
 	}

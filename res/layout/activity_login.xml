@@ -22,11 +22,50 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword" />
-    
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Login"
-		/>
+        android:layout_height="wrap_content"
+        android:text="Login" />
+
+    <LinearLayout
+        android:id="@+id/networkErrorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFaa4444"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/error_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/networkErrorMessage" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/badLoginCredentialsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFaa4444"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/error_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/badCredentialsMessage" />
+    </LinearLayout>
+
 </LinearLayout>

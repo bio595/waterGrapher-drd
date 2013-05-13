@@ -4,5 +4,33 @@
     <string name="app_name">waterGrapher</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="networkErrorMessage">No Network Connection</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_section1">History</string>
+    <string name="title_section2">Today</string>
+    <string name="title_section3">Section 3</string>
+    <string name="badCredentialsMessage">Your login credentials were bad</string>
+    <string name="add_drank">Add Drank</string>
+    <string name="amount_of_water_drank_so_far">Amount of water drank so far</string>
 
+    
+    <string-array name="newTimes">
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>

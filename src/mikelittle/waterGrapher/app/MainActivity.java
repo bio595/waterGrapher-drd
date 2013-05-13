@@ -33,10 +33,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -105,13 +105,6 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
@@ -146,15 +139,17 @@ public class MainActivity extends FragmentActivity implements
 			// below) with the page number as its lone argument.
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
+			
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
+			
 			return fragment;
 		}
 
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return 2;
 		}
 
 		@Override
@@ -165,8 +160,6 @@ public class MainActivity extends FragmentActivity implements
 				return getString(R.string.title_section1).toUpperCase(l);
 			case 1:
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
@@ -182,6 +175,8 @@ public class MainActivity extends FragmentActivity implements
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
+		public static final int ARG_HISTORY = 1;
+		public static final int ARG_TODAY = 2;
 
 		public DummySectionFragment() {
 		}
@@ -189,12 +184,22 @@ public class MainActivity extends FragmentActivity implements
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
+			
+			int page = getArguments().getInt(ARG_SECTION_NUMBER);
+			View rootView;
+			if(page == ARG_TODAY){
+				rootView = inflater.inflate(R.layout.today_fragment,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+				
+				Spinner timeSpinner = (Spinner) rootView.findViewById(R.id.time);
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.newTimes)); 
+				timeSpinner.setAdapter(adapter);
+				timeSpinner.setSelection(0);
+				
+			}else{
+				rootView = inflater.inflate(R.layout.history_fragment, container, false);
+			}
+			
 			return rootView;
 		}
 	}
@@ -228,7 +233,6 @@ public class MainActivity extends FragmentActivity implements
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 		}
 		

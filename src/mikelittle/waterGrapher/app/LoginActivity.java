@@ -104,7 +104,7 @@ public class LoginActivity extends Activity {
 			DefaultHttpClient client = createHttpClient();
 
 			HttpPost postRequest = new HttpPost(
-					"http://watergrapher.herokuapp.com/login");
+					"http://watergrapher.herokuapp.com/login/");
 			// Put data in the request
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("username", params[0]));
@@ -114,7 +114,6 @@ public class LoginActivity extends Activity {
 				postRequest.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 				HttpResponse response = client.execute(postRequest);
 				
-
 				statusCode = response.getStatusLine().getStatusCode();
 
 				switch (statusCode) {
